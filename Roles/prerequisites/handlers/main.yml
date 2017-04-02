@@ -2,3 +2,8 @@
   service:
     name: ntpd
     state: started
+
+- name: Start the Docker service.
+  service:
+    name: docker
+    state: started

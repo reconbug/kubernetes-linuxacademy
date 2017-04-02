@@ -1,14 +1,42 @@
-- name: Add EPEL repository
+- name: Install EPEL.
+  yum:
+    name: epel-release
+    state: latest
+
+- name: Add the Docker CE repository.
   yum_repository:
-    name: epel
-    description: EPEL YUM repo
-    baseurl: http://dl.fedoraproject.org/pub/epel/7/x86_64/
+    name: docker-ce
+    description: Docker CE repository
+    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    gpgcheck: yes
+
+- rpm_key:
+    state: present
+    key: https://download.docker.com/linux/centos/gpg
 
 - name: Update the system.
-  command: yum update -y
+  shell: "{{ item }}"
+  with_items:
+    - yum makecache fast -y
+    - yum update -y
 
 - name: Install NTP on all servers.
-  package:
+  yum:
     name: ntp
     state: latest
   notify: Start the NTP service.
+
+- name: Add simple hosts for easy configuration.
+  copy:
+    src: hosts
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install Docker CE package.
+  yum:
+    name: docker-ce
+    state: latest
+  notify: Start the Docker service.

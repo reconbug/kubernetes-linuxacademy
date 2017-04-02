@@ -1,6 +1,6 @@
 --- # Playbook for Kubernetes prerequisites
 - hosts: all
-  remote_user: ec2-user
+  remote_user: centos
   become: yes
   become_method: sudo
   connection: ssh
