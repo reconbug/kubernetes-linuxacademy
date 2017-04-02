@@ -1,9 +1,7 @@
-- name: Start the NTP service.
+- name: Start the services.
   service:
-    name: ntpd
+    name: "{{ item }}"
     state: started
-
-- name: Start the Docker service.
-  service:
-    name: docker
-    state: started
+    with_items:
+      - ntpd
+      - docker

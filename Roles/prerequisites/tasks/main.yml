@@ -11,7 +11,8 @@
     gpgkey: https://download.docker.com/linux/centos/gpg
     gpgcheck: yes
 
-- rpm_key:
+- name: Install the Docker GPG key.
+  rpm_key:
     state: present
     key: https://download.docker.com/linux/centos/gpg
 
@@ -21,11 +22,14 @@
     - yum makecache fast -y
     - yum update -y
 
-- name: Install NTP on all servers.
+- name: Install NTP and Docker services.
   yum:
-    name: ntp
+    name: "{{ item }}"
     state: latest
-  notify: Start the NTP service.
+  with_items:
+    - ntp
+    - docker-ce
+  notify: Start the services.
 
 - name: Add simple hosts for easy configuration.
   copy:
@@ -34,9 +38,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Install Docker CE package.
-  yum:
-    name: docker-ce
-    state: latest
-  notify: Start the Docker service.
