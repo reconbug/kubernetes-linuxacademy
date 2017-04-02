@@ -1,0 +1,6 @@
+master_host: centos-master
+listen_address: 0.0.0.0
+minions:
+  - 172.31.22.181: centos-minion1
+  - 172.31.23.178: centos-minion2
+  - 172.31.18.252: centos-minion3

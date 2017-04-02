@@ -1,0 +1,13 @@
+--- # Playbook for setting up the Kubernetes cluster
+- hosts: all
+  remote_user: centos
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  strategy: free
+
+  roles:
+    - prerequisites
+    - setup.master
+    - setup.minions

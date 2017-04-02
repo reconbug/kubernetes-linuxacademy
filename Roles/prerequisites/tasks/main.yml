@@ -22,13 +22,13 @@
     - yum makecache fast -y
     - yum update -y
 
-- name: Install NTP and Docker services.
+- name: "Install services: NTP, Kubernetes."
   yum:
     name: "{{ item }}"
     state: latest
   with_items:
     - ntp
-    - docker-ce
+    - kubernetes
   notify: Start the services.
 
 - name: Add simple hosts for easy configuration.
@@ -38,3 +38,14 @@
     owner: root
     group: root
     mode: 0644
+
+- block:
+  - name: Disable or stop certain firewall services.
+    service:
+      name: "{{ item }}"
+      state: stopped
+    with_items:
+      - iptables
+      - firewalld
+  rescue:
+    - meta: flush_handlers

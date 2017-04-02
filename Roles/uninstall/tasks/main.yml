@@ -1,0 +1,10 @@
+- name: Uninstall services.
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker-ce
+    - docker-ce-selinux
+    - ntp
+    - kubernetes
+    - docker

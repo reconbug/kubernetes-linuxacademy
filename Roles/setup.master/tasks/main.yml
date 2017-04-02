@@ -1,0 +1,30 @@
+- name: Install needed service.
+  yum:
+    name: etcd
+    state: latest
+  delegate_to: 52.28.187.246
+
+- name: Install needed configuration.
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - etcd/etcd.conf
+    - kubernetes/apiserver
+    - kubernetes/config
+  delegate_to: 52.28.187.246
+
+- name: Enable and start needed services.
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - etcd
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+  delegate_to: 52.28.187.246
