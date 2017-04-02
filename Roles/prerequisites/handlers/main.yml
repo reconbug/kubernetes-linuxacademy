@@ -1,0 +1,4 @@
+- name: Start the NTP service.
+  service:
+    name: ntpd
+    state: started

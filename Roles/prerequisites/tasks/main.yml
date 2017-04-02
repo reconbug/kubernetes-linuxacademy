@@ -1,0 +1,14 @@
+- name: Add EPEL repository
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: http://dl.fedoraproject.org/pub/epel/7/x86_64/
+
+- name: Update the system.
+  command: yum update -y
+
+- name: Install NTP on all servers.
+  package:
+    name: ntp
+    state: latest
+  notify: Start the NTP service.

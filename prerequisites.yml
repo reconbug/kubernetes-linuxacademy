@@ -1,0 +1,10 @@
+--- # Playbook for Kubernetes prerequisites
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+
+  roles:
+    - prerequisites

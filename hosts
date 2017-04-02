@@ -1,7 +1,7 @@
 [master]
-mpalade1.mylabserver.com
+52.59.68.176
 
 [minions]
-mpalade2.mylabserver.com
-mpalade3.mylabserver.com
-mpalade4.mylabserver.com
+52.59.147.249
+52.28.94.171
+52.28.31.18
