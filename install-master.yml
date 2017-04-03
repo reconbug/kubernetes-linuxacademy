@@ -1,0 +1,11 @@
+--- # Playbook for setting up the Kubernetes master.
+- hosts: master
+  remote_user: centos
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  strategy: free
+
+  roles:
+    - setup.master

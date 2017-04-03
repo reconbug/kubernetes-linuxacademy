@@ -8,11 +8,6 @@
   with_items:
     - kubernetes/config
     - kubernetes/kubelet
-  delegate_to: "{{ item }}"
-  with_items:
-    - 52.58.200.94
-    - 35.158.61.71
-    - 52.59.95.98
 
 - name: debug
   debug: "msg={{ ansible_default_ipv4.address }}"

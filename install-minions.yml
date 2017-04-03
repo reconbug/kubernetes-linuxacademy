@@ -1,0 +1,11 @@
+--- # Playbook for setting up the Kubernetes minions.
+- hosts: minions
+  remote_user: centos
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  strategy: free
+
+  roles:
+    - setup.minions

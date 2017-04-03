@@ -1,4 +1,4 @@
---- # Playbook for setting up the Kubernetes cluster
+--- # Playbook for installing prerequisites for the Kubernetes cluster.
 - hosts: all
   remote_user: centos
   become: yes
@@ -9,5 +9,3 @@
 
   roles:
     - prerequisites
-    - setup.master
-    - setup.minions
