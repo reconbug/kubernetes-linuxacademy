@@ -2,7 +2,6 @@
   yum:
     name: etcd
     state: latest
-  delegate_to: 52.28.187.246
 
 - name: Install needed configuration.
   template:
@@ -15,7 +14,6 @@
     - etcd/etcd.conf
     - kubernetes/apiserver
     - kubernetes/config
-  delegate_to: 52.28.187.246
 
 - name: Enable and start needed services.
   service:
@@ -27,4 +25,3 @@
     - kube-apiserver
     - kube-controller-manager
     - kube-scheduler
-  delegate_to: 52.28.187.246

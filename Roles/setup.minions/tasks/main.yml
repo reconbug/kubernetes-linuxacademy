@@ -9,5 +9,21 @@
     - kubernetes/config
     - kubernetes/kubelet
 
-- name: debug
-  debug: "msg={{ ansible_default_ipv4.address }}"
+- name: Add the correct hostname to each kubelet.
+  replace:
+    dest: /etc/kubernetes/kubelet
+    regexp: REPLACE_ME
+    replace: "{{ item.name }}"
+  when: item.ip == "{{ansible_default_ipv4.address | trim}}"
+  with_items:
+    - "{{ minions }}"
+
+- name: Enable and start needed services.
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - kube-proxy
+    - kubelet
+    - docker
