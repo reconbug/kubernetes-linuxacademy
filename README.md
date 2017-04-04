@@ -11,8 +11,8 @@
 
 ### Configuration
 
-# Start by configuring the `hosts` file, by adding your EC2 instances public IPs.
-# Next, edit the `Roles/setup.minions/vars/main.yml` and add there the private IPs of your nodes.
+* Start by configuring the `hosts` file, by adding your EC2 instances public IPs.
+* Next, edit the `Roles/setup.minions/vars/main.yml` and add there the private IPs of your nodes.
 
 ### Installation
 
