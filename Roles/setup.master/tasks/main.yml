@@ -25,3 +25,11 @@
     - kube-apiserver
     - kube-controller-manager
     - kube-scheduler
+
+- name: Copy the object configuration.
+  copy:
+    src: nginx.yaml
+    dest: /home/centos/nginx.yaml
+    owner: centos
+    group: centos
+    mode: 0644

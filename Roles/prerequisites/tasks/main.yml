@@ -29,6 +29,7 @@
   with_items:
     - ntp
     - kubernetes
+    - runc
   notify: Start the services.
 
 - name: Add simple hosts for easy configuration.
