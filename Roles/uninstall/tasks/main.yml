@@ -8,3 +8,8 @@
     - ntp
     - kubernetes
     - docker
+    - kubernetes-client
+    - kubernetes-master
+    - docker-client
+    - docker-common
+    - runc

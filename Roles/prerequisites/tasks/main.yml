@@ -3,18 +3,14 @@
     name: epel-release
     state: latest
 
-- name: Add the Docker CE repository.
+- name: Install virt7 Docker Repo.
   yum_repository:
-    name: docker-ce
-    description: Docker CE repository
-    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
-    gpgkey: https://download.docker.com/linux/centos/gpg
-    gpgcheck: yes
+    name: virt7-docker-common-release
+    baseurl: http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+    gpgcheck: no
 
-- name: Install the Docker GPG key.
-  rpm_key:
-    state: present
-    key: https://download.docker.com/linux/centos/gpg
+- name: Disable SE Linux.
+  shell: setenforce 0
 
 - name: Update the system.
   shell: "{{ item }}"
@@ -26,10 +22,12 @@
   yum:
     name: "{{ item }}"
     state: latest
+    enablerepo: virt7-docker-common-release
   with_items:
     - ntp
     - kubernetes
-    - runc
+    - etcd
+    - flannel
   notify: Start the services.
 
 - name: Add simple hosts for easy configuration.

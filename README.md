@@ -2,6 +2,8 @@
 
 ## Installation
 
+The playbooks were created using this [guide](https://kubernetes.io/docs/getting-started-guides/centos/centos_manual_config/).
+
 ### Prerequisites
 
 * Four AWS EC2 nodes, in the same subnetwork.
